@@ -3,7 +3,8 @@ import React from "react";
 import { ScrollView, SafeAreaView } from "react-native";
 import styled from "styled-components";
 import Card from "./components/Card";
-import { Ionicons } from "@expo/vector-icons";
+import { NotificationIcon } from "./components/Icons";
+import Logo from "./components/Logo";
 
 export default function App() {
   return (
@@ -14,14 +15,21 @@ export default function App() {
             <Avatar source={require("./assets/avatar.jpg")} />
             <Title>My first app!</Title>
             <Name>Meng</Name>
-            <Ionicons
-              name="ios-notifications"
-              size={32}
-              color="#4775f2"
-              style={{ position: "absolute", right: 20, top: 5 }}
-            />
+            <NotificationIcon style={{ position: "absolute", right: 20, top: 5 }} />
             <StatusBar style="auto" />
           </TitleBar>
+          <ScrollView
+            style={{
+              flexDirection: "row",
+              padding: 20,
+              paddingLeft: 12,
+              paddingTop: 30,
+            }}
+            horizontal={true}
+          >
+            <Logo image={require("./assets/logo-framerx.png")} text="Framer X" />
+            <Logo image={require("./assets/logo-figma.png")} text="Figma" />
+          </ScrollView>
           <Subtitle>Continue Learning</Subtitle>
           <ScrollView horizontal={true} style={{ paddingBottom: 30 }} showsHorizontalScrollIndicator={false}>
             <Card
@@ -50,7 +58,7 @@ const Subtitle = styled.Text`
   font-weight: 600;
   font-size: 15px;
   margin-left: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
   text-transform: uppercase;
 `;
 
