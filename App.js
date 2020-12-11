@@ -6,10 +6,12 @@ import Card from "./components/Card";
 import Course from "./components/Course";
 import { NotificationIcon } from "./components/Icons";
 import Logo from "./components/Logo";
+import Menu from "./components/Menu";
 
 export default function App() {
   return (
     <Container>
+      <Menu />
       <SafeAreaView>
         <ScrollView>
           <TitleBar>
