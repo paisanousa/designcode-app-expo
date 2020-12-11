@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-const Card = () => (
+const Card = ({ title, image, logo, caption, subtitle }) => (
   <Container>
     <Cover>
-      <CoverImage source={require("../assets/background2.jpg")} />
-      <Title>Styled Components</Title>
+      <CoverImage source={image} />
+      <Title>{title}</Title>
     </Cover>
     <Content>
-      <Logo source={require("../assets/logo-react.png")} />
+      <Logo source={logo} />
       <Wrapper>
-        <Caption>React Native</Caption>
-        <Subtitle>5 of 12 sections</Subtitle>
+        <Caption>{caption}</Caption>
+        <Subtitle>{subtitle}</Subtitle>
       </Wrapper>
     </Content>
   </Container>
