@@ -24,12 +24,9 @@ class Avatar extends React.Component {
   };
 
   componentDidMount() {
-    fetch("https://uifaces.co/api", {
-      method: "GET",
+    fetch("https://uifaces.co/api?limit=1&random", {
       headers: {
         "X-API-KEY": ["B4F2C0EB-172A425F-AEBC5BD9-2B3841F8"],
-        Accept: "application/json",
-        "Cache-Control": "no-cache",
       },
     })
       .then((response) => response.json())
