@@ -1,8 +1,9 @@
 import React from "react";
-import { TouchableOpacity, StatusBar, Linking } from "react-native";
+import { TouchableOpacity, StatusBar, Linking, ScrollView } from "react-native";
 import { WebView } from "react-native-webview";
 import styled from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
+import Markdown from "react-native-showdown";
 
 class SectionScreen extends React.Component {
   componentDidMount() {
@@ -18,34 +19,35 @@ class SectionScreen extends React.Component {
     const { section } = route.params;
 
     return (
-      <Container>
-        <StatusBar hidden />
-        <Cover>
-          <Image source={section.image} />
-          <Wrapper>
-            <Logo source={section.logo} />
-            <Subtitle>{section.subtitle}</Subtitle>
-          </Wrapper>
-          <Title>{section.title}</Title>
-          <Caption>{section.caption}</Caption>
-        </Cover>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.goBack();
-          }}
-          style={{
-            position: "absolute",
-            top: 20,
-            right: 20,
-          }}
-        >
-          <CloseView>
-            <Ionicons name="ios-close" size={22} style={{ marginTop: -2 }} color="#4775f2" />
-          </CloseView>
-        </TouchableOpacity>
-        <Content>
-          <WebView
-            source={{ html: htmlStyles + htmlContent }}
+      <ScrollView>
+        <Container>
+          <StatusBar hidden />
+          <Cover>
+            <Image source={section.image} />
+            <Wrapper>
+              <Logo source={section.logo} />
+              <Subtitle>{section.subtitle}</Subtitle>
+            </Wrapper>
+            <Title>{section.title}</Title>
+            <Caption>{section.caption}</Caption>
+          </Cover>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.goBack();
+            }}
+            style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+            }}
+          >
+            <CloseView>
+              <Ionicons name="ios-close" size={22} style={{ marginTop: -2 }} color="#4775f2" />
+            </CloseView>
+          </TouchableOpacity>
+          <Content>
+            {/* <WebView
+            source={{ html: htmlStyles + section.content }}
             scalesPageToFit={false}
             scrollEnabled={false}
             ref="webview"
@@ -55,24 +57,25 @@ class SectionScreen extends React.Component {
                 Linking.openURL(event.url);
               }
             }}
-          />
-        </Content>
-      </Container>
+          /> */}
+            <Markdown body={section.content} pureCSS={htmlStyles} scalesPageToFit={false} scrollEnabled={false} />
+          </Content>
+        </Container>
+      </ScrollView>
     );
   }
 }
 
 export default SectionScreen;
 
-const htmlContent = `
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<h2>This is a title</h2>
-<p>This <strong>is</strong> a <a href="https://start.duckduckgo.com/">link</a></p>
-<img src="https://cl.ly/8861f359ed6d/download/Wave14.jpg" />
-`;
+// const htmlContent = `
+// <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+// <h2>This is a title</h2>
+// <p>This <strong>is</strong> a <a href="https://start.duckduckgo.com/">link</a></p>
+// <img src="https://cl.ly/8861f359ed6d/download/Wave14.jpg" />
+// `;
 
 const htmlStyles = `
-<style>
   * {
     font-family: -apple-system; 
     margin: 0;
@@ -111,11 +114,23 @@ const htmlStyles = `
     margin-top: 20px;
 
   }
-</style>
+
+  pre {
+    padding: 20px;
+    background: #212C4F;
+    overflow: hidden;
+    word-wrap: break-word;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  code {
+    color: white;
+  }
 `;
 
 const Content = styled.View`
-  height: 100%;
+  height: 1000px;
   padding: 20px;
 `;
 
@@ -124,7 +139,7 @@ const Container = styled.View`
 `;
 
 const Cover = styled.View`
-  height: 375px;
+  height: 300px;
 `;
 
 const Image = styled.Image`
