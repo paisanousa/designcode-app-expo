@@ -9,9 +9,21 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => (
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Section" component={SectionScreen} />
+    <Stack.Navigator initialRouteName="Home" mode="modal">
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: "Home", // not necessary, name is default
+        }}
+      />
+      <Stack.Screen
+        name="Section"
+        component={SectionScreen}
+        options={{
+          title: "Section", // not necessary, name is default
+        }}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );
