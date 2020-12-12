@@ -104,7 +104,9 @@ class HomeScreen extends React.Component {
                   <TouchableOpacity
                     key={index}
                     onPress={() => {
-                      this.props.navigation.push("Section");
+                      this.props.navigation.navigate("Section", {
+                        section: card,
+                      });
                     }}
                   >
                     <Card
