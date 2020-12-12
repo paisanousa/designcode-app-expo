@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, StatusBar } from "react-native";
+import { TouchableOpacity, StatusBar, Linking } from "react-native";
 import { WebView } from "react-native-webview";
 import styled from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
@@ -44,7 +44,18 @@ class SectionScreen extends React.Component {
           </CloseView>
         </TouchableOpacity>
         <Content>
-          <WebView source={{ html: htmlStyles + htmlContent }} scalesPageToFit={false} scrollEnabled={false} />
+          <WebView
+            source={{ html: htmlStyles + htmlContent }}
+            scalesPageToFit={false}
+            scrollEnabled={false}
+            ref="webview"
+            onNavigationStateChange={(event) => {
+              if (event.url != "about:blank") {
+                this.refs.webview.stopLoading();
+                Linking.openURL(event.url);
+              }
+            }}
+          />
         </Content>
       </Container>
     );
@@ -56,7 +67,7 @@ export default SectionScreen;
 const htmlContent = `
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <h2>This is a title</h2>
-<p>This <strong>is</strong> a <a href="http://designcode.io">link</a></p>
+<p>This <strong>is</strong> a <a href="https://start.duckduckgo.com/">link</a></p>
 <img src="https://cl.ly/8861f359ed6d/download/Wave14.jpg" />
 `;
 
