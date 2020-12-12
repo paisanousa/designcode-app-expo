@@ -7,6 +7,7 @@ import { NotificationIcon } from "../components/Icons";
 import Logo from "../components/Logo";
 import Menu from "../components/Menu";
 import { connect } from "react-redux";
+import Avatar from "../components/Avatar";
 
 function mapStateToProps(state) {
   return { action: state.action };
@@ -77,7 +78,7 @@ class HomeScreen extends React.Component {
             <ScrollView>
               <TitleBar>
                 <TouchableOpacity onPress={this.props.openMenu} style={{ position: "absolute", top: 0, left: 20 }}>
-                  <Avatar source={require("../assets/avatar.jpg")} />
+                  <Avatar />
                 </TouchableOpacity>
                 <Title>My first app!</Title>
                 <Name>Meng</Name>
@@ -145,13 +146,6 @@ const Subtitle = styled.Text`
   margin-left: 20px;
   margin-top: 20px;
   text-transform: uppercase;
-`;
-
-const Avatar = styled.Image`
-  width: 44px;
-  height: 44px;
-  background: black;
-  border-radius: 22px;
 `;
 
 const Container = styled.View`
