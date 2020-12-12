@@ -200,6 +200,7 @@ const Message = styled.Text`
 
 const CardsContainer = styled.View`
   flex-direction: row;
+  padding-left: 10px;
 `;
 
 const RootView = styled.View`
