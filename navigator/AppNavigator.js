@@ -5,6 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import SectionScreen from "../screens/SectionScreen";
+import CoursesScreen from "../screens/CoursesScreen";
+import ProjectsScreen from "../screens/ProjectsScreen";
 import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
@@ -17,7 +19,7 @@ const CoursesStack = () => (
   <Stack.Navigator headerMode="none">
     <Stack.Screen
       name="Courses"
-      component={SectionScreen}
+      component={CoursesScreen}
       options={{
         title: "Courses", // not necessary, name is default
       }}
@@ -29,7 +31,7 @@ const ProjectsStack = () => (
   <Stack.Navigator headerMode="none">
     <Stack.Screen
       name="Projects"
-      component={SectionScreen}
+      component={ProjectsScreen}
       options={{
         title: "Projects", // not necessary, name is default
       }}
